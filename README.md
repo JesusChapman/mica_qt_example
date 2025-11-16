@@ -2,7 +2,7 @@
 
 Este repositorio, contiene un ejemplo en código replicable para aplicar efecto Mica y Acrílico a apps desarrolladas con Qt Widgets Frameworks, usando la API de Windows, esto es sumamente útil para un diseño nativo/moderno en apps para Windows desarrolladas con Qt
 
-La documentación en internet disponible suele ser frustrante y confusa, espero que esto te ayude mucho como lo hizco conmigo.
+La documentación en internet disponible suele ser frustrante y confusa, espero que esto te ayude mucho como lo hizo conmigo.
 
 
 
@@ -24,7 +24,7 @@ Posteriormente, necesitamos detectar la versión de windows 11 usada, debido a q
 #include <QOperatingSystemVersion>
 ```
 
-luego, en nuestro archivo principal de ventana, en este ejemplo vendería siendo mainwindow.cpp, tenemos que hacer que nuestra ventana sea translúcida y usar las APIs de windows para que obtenga el efecto que deseamos, en nuestro caso usamos `#ifdef Q_OS_WIN` para que estos bloques de código SOLO SE COMPILEN EN WINDOWS, de esa forma, si tu app es multiplataforma, no se verá afectada al compilarla en Linux/Mac/Android, ya que este efecto solo será usado en Windows.
+Luego, en nuestro archivo principal de ventana, en este ejemplo vendería siendo mainwindow.cpp, tenemos que hacer que nuestra ventana sea translúcida y usar las APIs de windows para que obtenga el efecto que deseamos, en nuestro caso usamos `#ifdef Q_OS_WIN` para que estos bloques de código SOLO SE COMPILEN EN WINDOWS, de esa forma, si tu app es multiplataforma, no se verá afectada al compilarla en Linux/Mac/Android, ya que este efecto solo será usado en Windows.
 
 
 
@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) //código aburrido de Qt
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
     int appsUseLightTheme = settings.value("AppsUseLightTheme", 1).toInt();
     int isDark = (appsUseLightTheme == 0) ? 1 : 0;
-    
+
     // Aplicamos los atributos con la API del gestor de ventanas de Windows
     DwmSetWindowAttribute(
         hwnd,
@@ -135,9 +135,7 @@ MainWindow::~MainWindow()
 
 ## Eso es todo :)
 
-Espero que esto te sirva y te ahorre horas de busqueda sin exíto de como realizar esto. En mi experiencia y pruebas personales es incluso más estable/consistente/compatible en la implementación hacerlo con Python (Pyqt/Pyside), en el cual también probé y existían varios errores visuales.
-
-
+Espero que esto te sirva y te ahorre horas de busqueda sin exíto de como realizar esto. En mi experiencia y pruebas personales es incluso más estable/consistente/compatible comparado a hacerlo con Python (Pyqt/Pyside), en el cual también probé y existían varios errores visuales. Ademas, C++ es excelente si quieres desarrollar apps con Qt.
 
 
 
